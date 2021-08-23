@@ -1,8 +1,6 @@
-import os
-from flask import Flask
+from flask import Blueprint
 
-def create_app():
-  app = Flask(__name__)
-  app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY') or 'supersecretkey'
+main = Blueprint('main', __name__)
 
-  return app
+from . import views, errors
+
