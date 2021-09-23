@@ -149,6 +149,9 @@ dmypy.json
 # Cython debug symbols
 cython_debug/
 
+# SQLite databases
+*.sqlite
+
 ### Python ###
 # Byte-compiled / optimized / DLL files
 
