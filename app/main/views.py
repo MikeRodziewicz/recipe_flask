@@ -1,11 +1,7 @@
-from re import sub
+
 from flask import render_template
 from .forms import NameForm
-from flask_bootstrap import Bootstrap
 from . import main
-
-
-
 
 
 @main.route('/', methods=['GET'])
