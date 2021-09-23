@@ -1,15 +1,11 @@
 from re import sub
 from flask import render_template
-from flask_wtf import FlaskForm
-from wtforms import StringField, SubmitField
-from wtforms.validators import DataRequired
+from .forms import NameForm
 from flask_bootstrap import Bootstrap
 from . import main
 
 
-class NameForm(FlaskForm):
-    name = StringField('What is your name?', validators=[DataRequired()])
-    submit = SubmitField('Submit')
+
 
 
 @main.route('/', methods=['GET'])

@@ -7,7 +7,7 @@
 {% endblock %}
 
 
-{% block title %}BLOG{% endblock %}
+{% block title %}PantryKeeper{% endblock %}
 
 {% block navbar %}
 <div class="navbar navbar-inverse" role="navigation">
@@ -44,4 +44,6 @@
 {% endblock %}
 
 {% block scripts%}
+    {{ super() }}
+    {{ moment.include_moment() }}
 {% endblock %}
