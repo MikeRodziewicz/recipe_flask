@@ -16,7 +16,7 @@ class Container(db.Model):
     container_id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100), unique=True, index=True)
     capacity = db.Column(db.Integer)
-    ingredient = db.relationship('Ingredient', backref='container')
+    ingredient = db.relationship('Ingredient', backref='container', lazy='dynamic')
 
 
 class Ingredient(db.Model):
