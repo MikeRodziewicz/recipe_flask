@@ -1,5 +1,5 @@
 
-from flask import render_template, session
+from flask import render_template, session, flash
 from flask.helpers import url_for
 from werkzeug.utils import redirect
 from .forms import NameForm, UserForm
@@ -33,8 +33,10 @@ def user():
             db.session.add(user)
             db.session.commit()
             session['known'] = False
+            flash('Your email has been added.')
         else:
             session['know'] = True
+            flash('Your email aready exists.')
         session['email'] = form.email.data
         form.email.data = ''
         return redirect(url_for('main.index'))

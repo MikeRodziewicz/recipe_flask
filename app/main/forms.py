@@ -9,7 +9,7 @@ class NameForm(FlaskForm):
 
 
 class UserForm(FlaskForm):
-    email = StringField('what is your e-mail?', validators=[DataRequired()])
+    email = StringField('what is your e-mail?', validators=[DataRequired(), Email()])
     submit = SubmitField('Submit')
 
 
