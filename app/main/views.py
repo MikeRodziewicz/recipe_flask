@@ -2,7 +2,7 @@
 from flask import render_template, session, flash
 from flask.helpers import url_for
 from werkzeug.utils import redirect
-from .forms import UserForm, IngredientForm
+from .forms import UserForm, IngredientForm, ContainerForm
 from . import main
 from app.models import User, Ingredient, Container
 from app import db
@@ -44,10 +44,9 @@ def user():
     email = session.get('email'), known=session.get('known', False))
 
 
-@main.route('/ingredient', methods=['GET', 'POST'])
+@main.route('/add_ingredient', methods=['GET', 'POST'])
 def add_ingredient():
     form = IngredientForm()
-
     if not form.validate_on_submit():
         return render_template('ingredient.html', form=form)
     ingredient = Ingredient(
@@ -57,5 +56,20 @@ def add_ingredient():
     )
     with db.session() as session:
         session.add(ingredient)
+        session.commit()
+    return redirect(url_for('main.index'))
+
+
+@main.route('/add_container', methods=['GET', 'POST'])
+def add_container():
+    form = ContainerForm()
+    if not form.validate_on_submit():
+        return render_template('container.html', form=form)
+    container = Container(
+        name = form.container_name.data,
+        capacity = form.capacity.data
+    )
+    with db.session() as session:
+        session.add(container)
         session.commit()
     return redirect(url_for('main.index'))

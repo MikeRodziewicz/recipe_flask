@@ -17,6 +17,7 @@ class UserForm(FlaskForm):
 class ContainerForm(FlaskForm):
     container_name = StringField('Name the container', validators=[DataRequired()])
     capacity = StringField('What is the capacity?', validators=[DataRequired()])
+    submit = SubmitField('Submit')  
 
 class IngredientForm(FlaskForm):
 
