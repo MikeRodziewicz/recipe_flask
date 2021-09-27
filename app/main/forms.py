@@ -19,14 +19,15 @@ class ContainerForm(FlaskForm):
     capacity = StringField('What is the capacity?', validators=[DataRequired()])
 
 class IngredientForm(FlaskForm):
-   
-    def __init__(self, formdata=_Auto, **kwargs):
-            super().__init__(formdata=formdata, **kwargs)
-            self.container.choices = Container.query.with_entities(Container.name)
 
-  
     ingredient_name = StringField('Name the ingredient', validators=[DataRequired()])
     quantity = StringField('How many items to add?', validators=[DataRequired()])
-    container = SelectField('Container')
+    container = SelectField('Container', coerce=int, validators=[DataRequired()])
     submit = SubmitField('Submit')
+   
+    def __init__(self, formdata=_Auto, **kwargs):
+            super(IngredientForm, self).__init__(**kwargs)
+            self.container.choices = [(container.container_id, container.name) for container in Container.query.order_by(Container.name).all()]
+          
+    
  
