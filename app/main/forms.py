@@ -22,12 +22,12 @@ class IngredientForm(FlaskForm):
 
     ingredient_name = StringField('Name the ingredient', validators=[DataRequired()])
     quantity = StringField('How many items to add?', validators=[DataRequired()])
-    container = SelectField('Container', coerce=int, validators=[DataRequired()])
+    container_id = SelectField('Container', coerce=int, validators=[DataRequired()])
     submit = SubmitField('Submit')
    
     def __init__(self, formdata=_Auto, **kwargs):
             super(IngredientForm, self).__init__(**kwargs)
-            self.container.choices = [(container.container_id, container.name) for container in Container.query.order_by(Container.name).all()]
+            self.container_id.choices = [(container_id.container_id, container_id.name) for container_id in Container.query.order_by(Container.name).all()]
           
     
  

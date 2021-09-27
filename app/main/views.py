@@ -4,7 +4,7 @@ from flask.helpers import url_for
 from werkzeug.utils import redirect
 from .forms import UserForm, IngredientForm
 from . import main
-from app.models import User, Ingredient
+from app.models import User, Ingredient, Container
 from app import db
 
 
@@ -47,13 +47,15 @@ def user():
 @main.route('/ingredient', methods=['GET', 'POST'])
 def add_ingredient():
     form = IngredientForm()
+
     if not form.validate_on_submit():
         return render_template('ingredient.html', form=form)
     ingredient = Ingredient(
         name = form.ingredient_name.data,
         quantity = form.quantity.data,
-        container = int(form.container.data)
+        container = Container.query.get(form.container_id.data)
     )
     with db.session() as session:
         session.add(ingredient)
+        session.commit()
     return redirect(url_for('main.index'))
