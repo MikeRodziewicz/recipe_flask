@@ -6,6 +6,7 @@ from .forms import UserForm, IngredientForm, ContainerForm
 from . import main
 from app.models import User, Ingredient, Container
 from app import db
+from ..mail import sending_email
 
 
 @main.route('/', methods=['GET'])
@@ -34,6 +35,7 @@ def user():
             db.session.commit()
             session['known'] = False
             flash('Your email has been added.')
+            sending_email()
         else:
             session['know'] = True
             flash('Your email aready exists.')
