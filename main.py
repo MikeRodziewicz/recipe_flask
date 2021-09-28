@@ -1,4 +1,5 @@
 import os
+import click
 from app import create_app, db
 from flask_migrate import Migrate, upgrade
 from app.models import User, Ingredient, Container
@@ -12,3 +13,10 @@ migrate = Migrate(app, db)
 def make_shell_context():
     return dict(db=db, User=User, Ingredient=Ingredient,
                 Container=Container)
+
+@app.cli.command()
+def test():
+    """Run the unit tests."""
+    import unittest
+    tests = unittest.TestLoader().discover('tests')
+    unittest.TextTestRunner(verbosity=2).run(tests)
