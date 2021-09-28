@@ -9,21 +9,12 @@ from app import db
 from ..mail import sending_email
 
 
+#TODO modify the html and the landing page
 @main.route('/', methods=['GET'])
 def index():
   return render_template('index.html')
 
-
-@main.route('/secret', methods=['GET', 'POST'])
-def secret():
-    name = None
-    form = UserForm()
-    if form.validate_on_submit():
-        name = form.name.data
-        form.name.data  = ''
-    return render_template('secret.html', form=form, name=name)
-
-
+#TODO delete the user page and/or change to UserProfile page - fetch logged user and display data etc.
 @main.route('/user', methods=['GET', 'POST'])
 def user():
     form = UserForm()
@@ -50,12 +41,12 @@ def user():
 def add_ingredient():
     form = IngredientForm()
     if not form.validate_on_submit():
-        return render_template('ingredient.html', form=form)
+        return render_template('form.html', form=form)
     ingredient = Ingredient(
         name = form.ingredient_name.data,
         quantity = form.quantity.data,
         container = Container.query.get(form.container_id.data)
-    )
+        )
     with db.session() as session:
         session.add(ingredient)
         session.commit()
@@ -66,11 +57,11 @@ def add_ingredient():
 def add_container():
     form = ContainerForm()
     if not form.validate_on_submit():
-        return render_template('container.html', form=form)
+        return render_template('form.html', form=form)
     container = Container(
         name = form.container_name.data,
         capacity = form.capacity.data
-    )
+        )
     with db.session() as session:
         session.add(container)
         session.commit()

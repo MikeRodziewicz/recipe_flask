@@ -4,11 +4,7 @@ from wtforms.validators import DataRequired, Email
 from ..models import Container
 from flask_wtf.form import _Auto
 
-class NameForm(FlaskForm):
-    name = StringField('What is your name?', validators=[DataRequired()])
-    submit = SubmitField('Submit')
-
-
+#TODO password handling
 class UserForm(FlaskForm):
     email = StringField('what is your e-mail?', validators=[DataRequired(), Email()])
     submit = SubmitField('Submit')
@@ -28,7 +24,7 @@ class IngredientForm(FlaskForm):
    
     def __init__(self, formdata=_Auto, **kwargs):
             super(IngredientForm, self).__init__(**kwargs)
-            self.container_id.choices = [(container_id.container_id, container_id.name) for container_id in Container.query.order_by(Container.name).all()]
-          
-    
- 
+            self.container_id.choices = [(container_id.container_id, container_id.name) 
+                    for container_id in Container.query.order_by(Container.name).all()]
+
+#TODO stock class to be added with total capacity of the ingredient

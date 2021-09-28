@@ -3,6 +3,8 @@ from operator import contains, index
 from sqlalchemy.orm import backref
 from . import db
 
+
+#TODO password management to be added here
 class User(db.Model):
     __tablename__ = 'users'
     user_id = db.Column(db.Integer, primary_key=True)

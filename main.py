@@ -1,13 +1,11 @@
-# here is where I actually execcute the creation of the app, pass the ENV var to the function and have the app running. 
 import os
-import click
 from app import create_app, db
 from flask_migrate import Migrate
 from app.models import User, Ingredient, Container
 
 
-app = create_app()
-migration = Migrate(app, db)
+app = create_app(os.getenv('FLASK_CONFIG') or 'default')
+migrate = Migrate(app, db)
 
 
 @app.shell_context_processor

@@ -3,7 +3,7 @@ from flask import render_template, session, url_for, redirect
 from .forms import LoginForm, RegistrationForm
 from . import auth
 
-# @main.route('/secret', methods=['GET', 'POST'])
+#TODO login form to be created
 @auth.route('/login', methods=['GET', 'POST'])
 def login():
     form = LoginForm()
@@ -12,7 +12,7 @@ def login():
         return redirect(url_for('main.index'))
     return render_template('auth/login.html', form=form)
 
-
+#TODO register form to be created
 @auth.route('/register', methods=['GET', 'POST'])
 def register():
     form = RegistrationForm()
@@ -20,3 +20,5 @@ def register():
         pass
         return redirect(url_for('main.index'))
     return render_template('auth/register.html', form=form)
+
+#TODO add User profile page use user.html file for that
