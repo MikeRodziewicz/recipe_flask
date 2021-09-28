@@ -6,9 +6,11 @@ from flask_bootstrap import Bootstrap
 from flask_moment import Moment
 from flask_sqlalchemy import SQLAlchemy
 
+
 bootstrap = Bootstrap()
 moment = Moment()
 db = SQLAlchemy()
+
 
 def create_app():
     basedir = os.path.abspath(os.path.dirname(__file__))
@@ -21,7 +23,7 @@ def create_app():
     bootstrap.init_app(app)
     moment.init_app(app)
     db.init_app(app)
-
+ 
 # Each blueprint has to be registered here with the app itself, so the same goes for auth, but also for any other packages i have. 
     from .main import main as main_blueprint
     app.register_blueprint(main_blueprint)
