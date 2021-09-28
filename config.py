@@ -29,7 +29,8 @@ class DevelopmentConfig(Config):
 
 class TestingConfig(Config):
     DEBUG=True
-    TEST_DATABASE_URL = os.environ.get('DEV_DATABASE_URL') or 'sqlite:///'
+    TESTING = True
+    TEST_DATABASE_URL = os.environ.get('TEST_DATABASE_URL') or 'sqlite://'
 
 
 config = {

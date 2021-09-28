@@ -1,13 +1,12 @@
 
-from flask import render_template, session, flash
+from flask import render_template, session, flash, current_app
 from flask.helpers import url_for
 from werkzeug.utils import redirect
 from .forms import UserForm, IngredientForm, ContainerForm
 from . import main
 from .. import db
 from app.models import User, Ingredient, Container
-from ..mail import sending_email
-
+from app.email import sending_email
 
 #TODO modify the html and the landing page
 @main.route('/', methods=['GET'])
@@ -26,7 +25,7 @@ def user():
             db.session.commit()
             session['known'] = False
             flash('Your email has been added.')
-            sending_email()
+            sending_email(current_app)
         else:
             session['know'] = True
             flash('Your email aready exists.')
