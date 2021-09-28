@@ -8,7 +8,7 @@ def send_async_email(app, msg):
         mail.send(msg)
 
 
-def sending_email():
+def sending_email(**kwargs):
     app = current_app._get_current_object()
     msg = Message('test from flask code', sender='mike.python.testing@gmail.com', recipients=['mike.python.testing@gmail.com'])
     msg.body = 'another test from flask code'

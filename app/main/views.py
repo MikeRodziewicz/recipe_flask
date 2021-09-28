@@ -4,8 +4,8 @@ from flask.helpers import url_for
 from werkzeug.utils import redirect
 from .forms import UserForm, IngredientForm, ContainerForm
 from . import main
+from .. import db
 from app.models import User, Ingredient, Container
-from app import db
 from ..mail import sending_email
 
 
