@@ -1,14 +1,14 @@
-from app import db, login_manager
 from werkzeug.security import generate_password_hash, check_password_hash
 from enum import unique
 from operator import contains, index
+from flask_login import UserMixin, AnonymousUserMixin
+from flask import current_app, request, url_for
 from sqlalchemy.orm import backref
-
-
+from app import db, login_manager
 
 
 #TODO password management to be added here
-class User(db.Model):
+class User(UserMixin, db.Model):
     __tablename__ = 'users'
     user_id = db.Column(db.Integer, primary_key=True)
     email = db.Column(db.String, unique=True, index=True)
@@ -29,6 +29,12 @@ class User(db.Model):
         return check_password_hash(self.password_hash, password)
 
 
+@login_manager.user_loader
+def load_user(user_id):
+    return User.query.get(int(user_id))
+
+
+
 class Container(db.Model):
     container_id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100), unique=True, index=True)
@@ -42,7 +48,3 @@ class Ingredient(db.Model):
     quantity = db.Column(db.Integer)
     container_id = db.Column(db.Integer, db.ForeignKey('container.container_id'))
 
-
-@login_manager.user_loader
-def load_user(user_id):
-    return User.query.get(int(user_id))

@@ -1,11 +1,9 @@
-
 from flask import Flask
 from flask_bootstrap import Bootstrap
 from flask_moment import Moment
 from flask_sqlalchemy import SQLAlchemy
 from flask_mail import Mail
 from flask_login import LoginManager
-from app.auth.views import login
 from config import config
 
 
@@ -15,6 +13,7 @@ bootstrap = Bootstrap()
 moment = Moment()
 db = SQLAlchemy()
 mail = Mail()
+
 login_manager = LoginManager()
 login_manager.login_view = 'auth.login'
 
