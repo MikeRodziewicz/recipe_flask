@@ -1,8 +1,10 @@
+from app import db, login_manager
 from werkzeug.security import generate_password_hash, check_password_hash
 from enum import unique
 from operator import contains, index
 from sqlalchemy.orm import backref
-from . import db
+
+
 
 
 #TODO password management to be added here
@@ -25,7 +27,7 @@ class User(db.Model):
 
     def verify_password(self, password):
         return check_password_hash(self.password_hash, password)
-        
+
 
 class Container(db.Model):
     container_id = db.Column(db.Integer, primary_key=True)
@@ -41,4 +43,6 @@ class Ingredient(db.Model):
     container_id = db.Column(db.Integer, db.ForeignKey('container.container_id'))
 
 
-
+@login_manager.user_loader
+def load_user(user_id):
+    return User.query.get(int(user_id))

@@ -7,6 +7,7 @@ from . import main
 from .. import db
 from app.models import User, Ingredient, Container
 from app.email import sending_email
+from flask_login import login_required
 
 #TODO modify the html and the landing page
 @main.route('/', methods=['GET'])
@@ -37,6 +38,7 @@ def user():
 
 
 @main.route('/add_ingredient', methods=['GET', 'POST'])
+@login_required
 def add_ingredient():
     form = IngredientForm()
     if not form.validate_on_submit():
