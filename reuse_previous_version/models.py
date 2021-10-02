@@ -4,7 +4,7 @@ from operator import contains, index
 from flask_login import UserMixin, AnonymousUserMixin
 from flask import current_app, request, url_for
 from sqlalchemy.orm import backref
-from app import db, login_manager
+from app import db, login
 
 
 #TODO password management to be added here
@@ -32,7 +32,7 @@ class User(UserMixin, db.Model):
            return (self.user_id)
 
 
-@login_manager.user_loader
+@login.user_loader
 def load_user(user_id):
     return User.query.get(int(user_id))
 
