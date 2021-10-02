@@ -1,8 +1,8 @@
-# from flask_wtf import FlaskForm
-# from wtforms import StringField, SubmitField, SelectField
-# from wtforms.validators import DataRequired, Email
-# from ..models import Container
-# from flask_wtf.form import _Auto
+from flask_wtf import FlaskForm
+from wtforms import StringField, SubmitField, SelectField
+from wtforms.validators import DataRequired, Email
+from ..models import Container
+from flask_wtf.form import _Auto
 
 #TODO password handling
 class UserForm(FlaskForm):

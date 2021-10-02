@@ -1,10 +1,10 @@
-# from werkzeug.security import generate_password_hash, check_password_hash
-# from enum import unique
-# from operator import contains, index
-# from flask_login import UserMixin, AnonymousUserMixin
-# from flask import current_app, request, url_for
-# from sqlalchemy.orm import backref
-from app import db
+from werkzeug.security import generate_password_hash, check_password_hash
+from enum import unique
+from operator import contains, index
+from flask_login import UserMixin, AnonymousUserMixin
+from flask import current_app, request, url_for
+from sqlalchemy.orm import backref
+from app import db, login
 
 
 
