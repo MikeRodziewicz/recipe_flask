@@ -1,16 +1,9 @@
-
-from operator import ne
-from re import I
-from flask import render_template, redirect, request, url_for, flash
-from flask_login import login_user, logout_user, current_user
-from werkzeug.urls import url_parse
-from app import db
-from app.auth.forms import LoginForm, RegistrationForm
-from app.models import User
-from app import auth
+from flask import render_template, flash, redirect, url_for
+from app import app
+from app.auth.forms import LoginForm
 
 
-# TODO login route 
+# TODO login route register blueprint 
 @auth.route('/login', methods=['GET', 'POST'])
 def login():
     if current_user.is_authenticated: 
