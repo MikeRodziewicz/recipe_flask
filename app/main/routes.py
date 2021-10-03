@@ -55,6 +55,7 @@ def add_ingredient():
 
 
 @main.route('/add_container', methods=['GET', 'POST'])
+@login_required
 def add_container():
     form = ContainerForm()
     if not form.validate_on_submit():
