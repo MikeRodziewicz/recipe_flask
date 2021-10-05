@@ -10,25 +10,25 @@
 {% block title %}PantryKeeper{% endblock %}
 
 {% block navbar %}
-
-<div class="container" id="nav-bar">
-    <nav class="navbar navbar-dark bg-dark" id="nav-bar-two">
-      <div class="container-fluid">
-        <div class="navbar-header navbar-dark">
-            <a class="navbar-brand " href="{{ url_for('main.index') }}"">Home</a>
-        </div>
-            <ul class="nav navbar-nav navbar-dark navbar-right">
-                {% if current_user.is_authenticated %}
-            <li><a href="{{ url_for('auth.logout') }}">Log Out</a></li>
-                {% else %}
-            <li><a href="{{ url_for('auth.login') }}">Log In</a></li>
-                {% endif %}
-            </ul>
-      </div>
-    </nav>
-  </div>
-
-
+<div class="container">
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+      <ul class="nav navbar-nav">
+        <li><a href="{{ url_for('main.index') }}">Home</a></li>
+        <li><a href="#"></a></li>
+        <li><a href="#"></a></li>
+        <li><a href="#"></a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        {% if current_user.is_authenticated %}
+        <li class="nav-item"><a href="{{ url_for('auth.logout') }}">Log Out</a></li>
+        {% else %}
+        <li class="nav-item"><a href="{{ url_for('auth.login') }}">Log In</a></li>
+        {% endif %}
+      </ul>
+    </div>
+  </nav>
+</div>
 {% endblock %}
 
 {% block content %}
