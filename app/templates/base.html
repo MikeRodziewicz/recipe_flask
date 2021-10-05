@@ -10,39 +10,48 @@
 {% block title %}PantryKeeper{% endblock %}
 
 {% block navbar %}
-<div class="navbar navbar-inverse" role="navigation">
-    <div class="container">
-        <div class="navbar-header">
-            <button type="button " class="navbar-toggle " data-toggle="collapse" data-target=".navbar-collapse">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand " href="/">Home</a>
+
+<div class="container" id="nav-bar">
+    <nav class="navbar navbar-dark bg-dark" id="nav-bar-two">
+      <div class="container-fluid">
+        <div class="navbar-header navbar-dark">
+            <a class="navbar-brand " href="{{ url_for('main.index') }}"">Home</a>
         </div>
-        <ul class="nav navbar-nav navbar-right">
-            {% if current_user.is_authenticated %}
-        <li><a href="{{ url_for('auth.logout') }}">Log Out</a></li>
-            {% else %}
-        <li><a href="{{ url_for('auth.login') }}">Log In</a></li>
-            {% endif %}
-        </ul>
-    </div>
-</div>
+            <ul class="nav navbar-nav navbar-dark navbar-right">
+                {% if current_user.is_authenticated %}
+            <li><a href="{{ url_for('auth.logout') }}">Log Out</a></li>
+                {% else %}
+            <li><a href="{{ url_for('auth.login') }}">Log In</a></li>
+                {% endif %}
+            </ul>
+      </div>
+    </nav>
+  </div>
+
+
 {% endblock %}
 
 {% block content %}
-<div class="container">
-    {% for message in get_flashed_messages() %}
-    <div class="alert alert-warning">
-        <button type="button" class="close" data-dismiss="alert">&times;
-        </button>
-        {{ message }}
+
+    <div class="container">
+        <div class='jumbotron'>
+        {% for message in get_flashed_messages() %}
+        <div class="alert alert-warning">
+            <button type="button" class="close" data-dismiss="alert">&times;
+            </button>
+            {{ message }}
+        </div>
+        {% endfor %}
+        </div>
     </div>
-    {% endfor %}
+
+
+<div class="container">
+    <div class='jumbotron'>
+        {% block page_content %}  {% endblock %}
+    </div>
 </div>
-{% block page_content %} {% endblock %}
+
 {% endblock %}
 
 {% block scripts%}
